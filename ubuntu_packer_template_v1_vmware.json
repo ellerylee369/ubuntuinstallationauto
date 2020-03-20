@@ -1,0 +1,55 @@
+{
+    "_comment": "building ubuntu 19.10 with packer",
+    "builders": [
+        {
+            
+    "type":"vmware-iso",
+    "iso_url": "http://releases.ubuntu.com/19.10/ubuntu-19.10-desktop-amd64.iso?_ga=2.92058458.1954551875.1584150446-1070716665.1583525568",
+    "iso_checksum": "96a8095001d447bbb9078925d72f7a77a3f62fbd78460093759af4394ce83d79",
+    "iso_checksum_type": "sha256",
+    "boot_command": [
+        "<esc><esc><enter><wait>",
+        "/install/vmlinuz noapic ",
+        "preseed/url=C:\\Users\\leery\\Documents\\BCIT Winter 2020\\Winter 2020\\ACIT 3900\\packer ubuntu install automation\\Ubuntupreseedv1.cfg",
+        "debian-installer=en_US auto locale=en_US kbd-chooser/method=us ",
+        "hostname={{ .Name }} ",
+        "fb=false debconf/frontend=noninteractive ",
+        "keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=USA ",
+        "keyboard-configuration/variant=USA console-setup/ask_detect=false ",
+        "initrd=/install/initrd.gz -- <enter>"
+        ],
+    
+
+    "vnc_bind_address": "0.0.0.0",
+    
+    
+    "boot_wait": "10s",
+    
+    
+    "vmx_data": {
+        "memsize": "2048",
+        "ethernet0.connectionType": "hostonly",
+        "ethernet0.vnet": "VMnet1"
+
+        
+
+    },
+
+    "ssh_username": "packer",
+    "ssh_password": "packer",
+    
+    
+    
+    
+    
+    "shutdown_command": "echo vmware | sudo -S shutdown -P now"
+    
+    
+    
+    
+    
+    
+        }
+    ]
+
+}
